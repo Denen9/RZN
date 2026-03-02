@@ -109,7 +109,7 @@ export default function Testimonials() {
     };
 
     return (
-        <section id="testimonials" className="bg-neutral-100 py-14 md:py-20 xl:py-22 2xl:py-24">
+        <section id="testimonials" className="bg-neutral-100 py-14 md:py-20 xl:py-22 2xl:py-24 overflow-hidden">
             <div className="mx-2.5 px-5 md:mx-3.5 md:px-22">
 
                 {/* ── Top: Label + Title Row ── */}
