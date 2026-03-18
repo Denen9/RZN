@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CtaButton from "@/components/ui/CtaButton";
+import { useLenis } from "@/components/ui/LenisProvider";
 
 const navLinks = [
     { label: "About", href: "#about" },
@@ -32,17 +33,20 @@ const IconLinkedin = () => (
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Bloquear scroll cuando el menú esté abierto
+    const lenis = useLenis();
+
+    // Bloquear scroll (Lenis) cuando el menú esté abierto
     useEffect(() => {
+        if (!lenis) return;
         if (isOpen) {
-            document.body.style.overflow = "hidden";
+            lenis.stop();
         } else {
-            document.body.style.overflow = "unset";
+            lenis.start();
         }
         return () => {
-            document.body.style.overflow = "unset";
+            lenis.start();
         };
-    }, [isOpen]);
+    }, [isOpen, lenis]);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
